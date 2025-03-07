@@ -11,8 +11,8 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 secret_id = ''        # 替换为你的SecretId
 secret_key = ''      # 替换为你的SecretKey
-region = ''             # 替换为你Bucket所在的地域
-bucket = '' # 替换为你的存储桶名称
+region = 'ap-guangzhou'             # 替换为你Bucket所在的地域
+bucket = 'zhipuai-on-wechat-1319111495' # 替换为你的存储桶名称
 
 # 初始化配置
 config = CosConfig(Region=region, SecretId=secret_id, SecretKey=secret_key)

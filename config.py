@@ -156,6 +156,12 @@ available_setting = {
     "subscribe_msg": "",  # 订阅消息, 支持: wechatmp, wechatmp_service, wechatcom_app
     "debug": False,  # 是否开启debug模式，开启后会打印更多日志
     "appdata_dir": "",  # 数据目录
+    # gewchat
+    "gewechat_token": "",        # 首次登录可留空,自动获取
+    "gewechat_app_id": "",       # 首次登录可留空,自动获取
+    "gewechat_base_url": "http://172.17.0.2:2531/v2/api",  # gewechat服务API地址
+    "gewechat_callback_url": "http://172.17.0.2:9919/v2/api/callback/collect", # 回调地址
+    "gewechat_download_url": "http://172.17.0.2:2532/download", # 文件下载地址
     # 插件配置
     "plugin_trigger_prefix": "$",  # 规范插件提供聊天相关指令的前缀，建议不要和管理员指令前缀"#"冲突
     # 是否使用全局插件配置
@@ -203,6 +209,12 @@ class Config(dict):
             return self[key]
         except KeyError as e:
             return default
+        except Exception as e:
+            raise e
+    
+    def set(self, key, value):
+        try:
+            self[key] = value
         except Exception as e:
             raise e
 
@@ -296,6 +308,18 @@ def load_config():
 
     config.load_user_datas()
 
+def save_config():
+    global config
+    config_path = "./config.json"
+    try:
+        config_dict = dict(config)  # 将Config对象转换为普通字典
+        # 创建一个按键排序的有序字典
+        sorted_config = {key: config_dict[key] for key in sorted(config_dict.keys())}
+        with open(config_path, "w", encoding="utf-8") as f:
+            json.dump(sorted_config, f, indent=4, ensure_ascii=False)
+            logger.info("[Config] Configuration saved.")
+    except Exception as e:
+        logger.error(f"[Config] Save configuration error: {e}")
 
 def get_root():
     return os.path.dirname(os.path.abspath(__file__))

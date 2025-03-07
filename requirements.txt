@@ -9,5 +9,6 @@ pre-commit
 web.py
 linkai>=0.0.6.0
 zhipuai>=2.0.1
+pydub
 # cloudinary
 # cos-python-sdk-v5
