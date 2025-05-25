@@ -1,7 +1,7 @@
 # 本项目说明文档
 
 ## Introduction
-利用GLM4V图生文模型进行图识别分析,将个人微信当作机器人，并通过wechat群聊天方式进行使用(使用gewechat，基于ipad协议)
+利用GLM4V图生文模型进行图识别分析,将个人微信当作机器人，并通过wechat群聊天方式进行使用(使用gewechat，基于ipad协议)  Gewe协议最新需要付费！免费版本不可用！
 
 ## Run  
 
